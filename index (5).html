@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>i fix cellular – תיקון סלולר עד הבית</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0066FF;
+      --secondary: #FF6B00;
+      --dark: #0A1628;
+      --light: #F8FAFC;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --shadow-1: 0 20px 60px rgba(0, 0, 0, 0.15);
+      --shadow-2: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Rubik", sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* אנימציות */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Header מודרני */
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 42px;
+      font-weight: 900;
+      color: white;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      letter-spacing: 2px;
+    }
+
+    .header-contact {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .header-btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      font-size: 16px;
+    }
+
+    .header-btn:hover {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Navigation מודרני */
+    nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      padding: 5px 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 3px solid var(--primary);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 18px;
+      padding: 15px 25px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 0;
+      height: 3px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 60%;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+      background: rgba(0, 102, 255, 0.05);
+    }
+
+    /* Hero Section מרהיב */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 100px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 80px;
+      border-bottom-right-radius: 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      margin: 0;
+      color: white;
+      font-weight: 900;
+      line-height: 1.2;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      font-size: 22px;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.8;
+    }
+
+    /* כפתור CTA מדהים */
+    .cta {
+      display: inline-block;
+      padding: 20px 50px;
+      background: linear-gradient(135deg, #FF6B00, #FF8C42);
+      background-size: 200% 200%;
+      color: white;
+      font-size: 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 10px 40px rgba(255, 107, 0, 0.4);
+      transition: all 0.4s ease;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      animation: pulse 2s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '💬';
+      position: absolute;
+      right: 20px;
+      font-size: 28px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .cta:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(255, 107, 0, 0.6);
+      animation: none;
+    }
+
+    /* Sections */
+    .section {
+      padding: 80px 25px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: 48px;
+      color: var(--dark);
+      margin-bottom: 50px;
+      text-align: center;
+      font-weight: 900;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 100px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+    }
+
+    /* כרטיסים מרהיבים */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary);
+    }
+
+    .card-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .card-text {
+      font-size: 17px;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    /* מחירים */
+    .price-card {
+      background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--dark);
+      border-right: 5px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .price-card:hover {
+      transform: translateX(-10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      border-right-width: 8px;
+    }
+
+    .price-number {
+      color: var(--secondary);
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    /* טופס יצירת קשר */
+    .contact-form {
+      max-width: 600px;
+      margin: 50px auto 0;
+      background: white;
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 18px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 15px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--primary), #0052cc);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(0, 102, 255, 0.4);
+    }
+
+    /* פרטי קשר */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .contact-item {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .contact-item-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .contact-item-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .contact-item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* Footer מודרני */
+    footer {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: white;
+      padding: 60px 25px 30px;
+      margin-top: 100px;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: 0;
+      left: 0;
+      height: 50px;
+      background: inherit;
+      clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 100%);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .copyright {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
+    }
+
+    /* כפתור נגישות מעוצב */
+    #accessibility-btn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 10000;
+      background: linear-gradient(135deg, var(--primary), #0052cc);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      font-size: 32px;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0, 102, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    #accessibility-btn:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 12px 40px rgba(0, 102, 255, 0.6);
+    }
+
+    /* תפריט נגישות */
+    #accessibility-menu {
+      display: none;
+      position: fixed;
+      bottom: 110px;
+      left: 30px;
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      width: 280px;
+      z-index: 10000;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+      border: 2px solid var(--primary);
+    }
+
+    #accessibility-menu h3 {
+      margin: 0 0 20px 0;
+      font-size: 20px;
+      color: var(--primary);
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .acc-option {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      cursor: pointer;
+      text-align: right;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    .acc-option:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateX(-5px);
+    }
+
+    .acc-option.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Modal משופר */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 20000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 700px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 50px;
+      border-radius: 30px;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 20px;
+    }
+
+    .modal-close:hover {
+      background: #dc2626;
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    .modal-content h2 {
+      color: var(--primary);
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    .modal-content h3 {
+      color: var(--dark);
+      font-size: 24px;
+      margin: 30px 0 15px;
+    }
+
+    .modal-content p, .modal-content ul {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #64748b;
+      margin-bottom: 15px;
+    }
+
+    .modal-content ul {
+      padding-right: 25px;
+    }
+
+    .modal-content li {
+      margin-bottom: 10px;
+    }
+
+    /* Accessibility Classes */
+    .acc-grayscale {
+      filter: grayscale(100%);
+    }
+
+    .acc-high-contrast {
+      background: black !important;
+      color: #ffff00 !important;
+    }
+    .acc-high-contrast header, 
+    .acc-high-contrast .hero, 
+    .acc-high-contrast .cta,
+    .acc-high-contrast button {
+      background: #333 !important;
+      color: #ffff00 !important;
+      border: 2px solid #ffff00 !important;
+    }
+    .acc-high-contrast .card {
+      background: #000 !important;
+      border: 2px solid #ffff00;
+      color: #ffff00 !important;
+    }
+    .acc-high-contrast a {
+      color: #00ff00 !important;
+      text-decoration: underline !important;
+    }
+
+    .acc-large-text {
+      font-size: 125% !important;
+    }
+
+    .acc-large-cursor, .acc-large-cursor * {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="1"><path d="M12 2L2 22l10-4 10 4z"/></svg>'), auto !important;
+    }
+
+    .acc-focus-mode *:focus {
+      outline: 4px solid #ff0000 !important;
+      outline-offset: 2px !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .section h2 {
+        font-size: 32px;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo {
+        font-size: 32px;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      
+      nav a {
+        font-size: 16px;
+        padding: 10px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<button id="accessibility-btn" onclick="toggleAccMenu()" aria-label="פתח תפריט נגישות">♿</button>
+<div id="accessibility-menu">
+    <h3>כלי נגישות</h3>
+    <button class="acc-option" onclick="toggleAccess('grayscale')">⚫ גווני אפור</button>
+    <button class="acc-option" onclick="toggleAccess('contrast')">🌗 ניגודיות גבוהה</button>
+    <button class="acc-option" onclick="toggleAccess('text')">🔍 הגדלת טקסט</button>
+    <button class="acc-option" onclick="toggleAccess('focus')">🎯 הדגשת פוקוס</button>
+    <button class="acc-option" onclick="toggleAccess('cursor')">👆 סמן גדול</button>
+    <button class="acc-option" onclick="openModal('accessibility-statement')">📜 הצהרת נגישות</button>
+    <button class="acc-option" style="background:#fee; border-color:#fcc;" onclick="resetAccess()">❌ איפוס הגדרות</button>
+</div>
+
+<header>
+  <div class="header-content">
+    <div class="logo">⚡ i fix cellular</div>
+    <div class="header-contact">
+      <a href="tel:0505557764" class="header-btn">📞 050-555-7764</a>
+      <a href="https://wa.me/972505557764" class="header-btn">💬 וואצאפ</a>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="#services">שירותים</a>
+  <a href="#why">למה אנחנו?</a>
+  <a href="#contact">צור קשר</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>🚀 תיקון סלולר עד הבית<br>מהיר • מקצועי • אמין</h1>
+    <p>
+      שכחת מהטרטור של מעבדות תיקונים! אנחנו מגיעים עד אליך עם ציוד מקצועי,
+      מתקנים במקום מול העיניים, ונותנים אחריות מלאה. בלי תורים, בלי המתנות, בלי הפתעות במחיר.
+    </p>
+    <a class="cta" href="https://wa.me/972505557764?text=היי%20אשמח%20לתיאום%20תיקון">    תיאום מיידי בוואצאפ</a>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <h2>💼 השירותים שלנו</h2>
+  
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icon">📱</span>
+      <div class="card-title">החלפת מסכים</div>
+      <div class="card-text">מסכים מקוריים או תואמים איכותיים. התקנה מקצועית במקום עם אחריות מלאה.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🔋</span>
+      <div class="card-title">החלפת סוללות</div>
+      <div class="card-text">הטלפון מתרוקן מהר? נחליף לך את הסוללה במקום ותחזור לחיים!</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">⚡</span>
+      <div class="card-title">תיקון שקע טעינה</div>
+      <div class="card-text">בעיות טעינה? שקע רופף? נתקן במקום תוך דקות.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">💾</span>
+      <div class="card-title">שחזור מידע</div>
+      <div class="card-text">תמונות, אנשי קשר וקבצים חשובים - נשחזר הכל גם אם הטלפון לא נדלק.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🛠️</span>
+      <div class="card-title">תיקונים כלליים</div>
+      <div class="card-text">מצלמה, רמקול, מיקרופון, כפתורים - כל תקלה שיש, יש לנו פתרון!</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">💧</span>
+      <div class="card-title">טיפול בנזקי מים</div>
+      <div class="card-text">הטלפון נפל למים? נבצע טיפול מיידי להצלת המכשיר.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <h2>⭐ למה לבחור ב־GO סלולר?</h2>
+
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icon">🏠</span>
+      <div class="card-title">שירות עד הבית</div>
+      <div class="card-text">אתם נשארים בנוחות שלכם - אנחנו מגיעים עד אליכם ומתקנים במקום.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">👀</span>
+      <div class="card-title">שקיפות מוחלטת</div>
+      <div class="card-text">רואים הכל מול העיניים - אין תעלומות, אין טריקים.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">💰</span>
+      <div class="card-title">מחירים הוגנים</div>
+      <div class="card-text">מחיר קבוע מראש, ללא הפתעות. מה שמוצג - זה מה שמשלמים.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🛡️</span>
+      <div class="card-title">אחריות מלאה</div>
+      <div class="card-text">כל תיקון מגיע עם אחריות מלאה - אנחנו עומדים מאחורי העבודה שלנו.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">⚡</span>
+      <div class="card-title">מהירות</div>
+      <div class="card-text">רוב התיקונים מתבצעים תוך 20-40 דקות בלבד!</div>
+    </div>
+
+    <div class="card">
+      <span class="card-icon">🎯</span>
+      <div class="card-title">מקצועיות</div>
+      <div class="card-text">טכנאים מנוסים עם ציוד מתקדם וחלפים איכותיים.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="prices">
+  <h2>💎 למה כדאי לבחור בנו?</h2>
+  
+  <p style="text-align:center; font-size: 20px; color: #64748b; margin-bottom: 40px; line-height: 1.8;">
+    כשאתם בוחרים ב-i fix cellular, אתם לא רק מתקנים טלפון - אתם מקבלים שירות מקצועי שחוסך לכם זמן, כסף ועצבים. אנחנו מבינים שהטלפון הנייד שלכם הוא לא סתם מכשיר - זה חלק מהחיים שלכם, וכשהוא מתקלקל, זה משבש את כל השגרה.
+  </p>
+
+  <div class="price-card">
+    <strong>🏆 ניסיון עשיר ומוכח</strong><br><br>
+    אנחנו עובדים בתחום תיקון הסלולר כבר שנים רבות, ובמהלך התקופה הזו צברנו ניסיון רב בטיפול במגוון רחב של מכשירים ותקלות. אנחנו מכירים את כל דגמי המכשירים - מאייפון ועד סמסונג, שיאומי, אופו ועוד. כל תקלה שתתקלו בה, כבר טיפלנו בה עשרות ומאות פעמים, ואנחנו יודעים בדיוק איך לפתור אותה במהירות וביעילות.
+  </div>
+
+  <div class="price-card">
+    <strong>🛠️ ציוד מקצועי ומתקדם</strong><br><br>
+    אנחנו משקיעים בציוד המתקדם ביותר לתיקון מכשירים. כל הכלים שאנחנו משתמשים בהם הם איכותיים ומקצועיים, מה שמאפשר לנו לבצע תיקונים מדויקים ובטוחים. אנחנו לא משתמשים בכלים זולים או לא מתאימים שעלולים לפגוע במכשיר שלכם - הכול נעשה ברמה הגבוהה ביותר.
+  </div>
+
+  <div class="price-card">
+    <strong>⭐ חלפים איכותיים ואמינים</strong><br><br>
+    כשאנחנו מחליפים חלק במכשיר שלכם, אנחנו משתמשים רק בחלפים איכותיים. אנחנו לא מתפשרים על האיכות - כל מסך, סוללה או חלק אחר שמותקן במכשיר שלכם עובר בדיקות קפדניות ונבחר בקפידה. אנחנו עובדים עם ספקים אמינים ומוכרים, ולא מתפשרים על חלקים זולים ולא איכותיים.
+  </div>
+
+  <div class="price-card">
+    <strong>🚀 זמינות ומהירות ללא פשרות</strong><br><br>
+    אנחנו מבינים שאתם לא יכולים להישאר ללא טלפון לזמן רב. לכן, אנחנו מתחייבים להגיע אליכם בהקדם האפשרי ולבצע את התיקון במהירות מקסימלית. רוב התיקונים מתבצעים תוך 20-40 דקות בלבד, כך שתוכלו לחזור לשגרה שלכם כמה שיותר מהר. אנחנו זמינים כמעט בכל שעות היום, כולל ערבים ובסופי שבוע.
+  </div>
+
+  <div class="price-card">
+    <strong>💰 תמורה הוגנת ומחירים שקופים</strong><br><br>
+    אנחנו מאמינים בשקיפות מוחלטת. לפני שמתחילים את התיקון, אנחנו נותנים לכם מחיר ברור וסופי - אין תוספות מפתיעות, אין עלויות נסתרות. המחיר שמוצע לכם בהתחלה הוא המחיר שתשלמו בסוף, ללא יוצא מן הכלל. אנחנו גם מציעים מחירים הוגנים ותחרותיים ביחס לשוק, כך שתקבלו שירות מעולה במחיר שמתאים לכם.
+  </div>
+
+  <div class="price-card">
+    <strong>🔒 אחריות מלאה על כל עבודה</strong><br><br>
+    כל תיקון שאנחנו מבצעים מגיע עם אחריות מלאה. אם יש בעיה כלשהי לאחר התיקון (שלא נגרמה על ידכם), אנחנו נטפל בזה מיד וללא עלות נוספת. האחריות שלנו היא עדות לאיכות העבודה שלנו ולביטחון שיש לנו ביכולות שלנו. אנחנו עומדים מאחורי כל עבודה שאנחנו עושים.
+  </div>
+
+  <div class="price-card">
+    <strong>👨‍💼 שירות אישי ומסור</strong><br><br>
+    בשבילנו, אתם לא סתם עוד לקוח - אתם בני אדם עם צרכים ודרישות ייחודיות. אנחנו מקדישים לכם את מלוא תשומת הלב, מקשיבים לכם ומתאימים את השירות בדיוק למה שאתם צריכים. אנחנו זמינים לכל שאלה, מסבירים בסבלנות מה הבעיה ואיך אנחנו מתכננים לפתור אותה, ודואגים שתהיו מרוצים לחלוטין מהשירות.
+  </div>
+
+  <div class="price-card">
+    <strong>🌟 מאות לקוחות מרוצים</strong><br><br>
+    במהלך השנים, תיקנו אלפי מכשירים ושירתנו מאות לקוחות מרוצים. הלקוחות שלנו חוזרים אלינו פעם אחר פעם ומפנים אלינו את החברים והמשפחה שלהם - זו העדות הכי חזקה לאיכות השירות שלנו. אנחנו גאים בשמירה על מעגל לקוחות נאמנים שסומכים עלינו בכל תקלה.
+  </div>
+
+  <div class="price-card">
+    <strong>🎓 ידע מקצועי מתמיד</strong><br><br>
+    עולם הטכנולוגיה משתנה כל הזמן, ומכשירים חדשים עם טכנולוגיות חדשות יוצאים לשוק. אנחנו משקיעים בהכשרה מתמדת ובעדכון הידע שלנו, כך שנוכל לטפל גם במכשירים החדשים ביותר. אנחנו עוקבים אחרי כל החידושים בתחום ומתעדכנים בשיטות התיקון המתקדמות ביותר.
+  </div>
+
+  <div class="price-card">
+    <strong>🔐 שמירה על הפרטיות שלכם</strong><br><br>
+    אנחנו מבינים שהמכשיר שלכם מכיל מידע אישי ורגיש. לכן, אנחנו מתייחסים לפרטיות שלכם בכבוד ובאחריות המרבית. כל המידע במכשיר שלכם נשאר מוגן ופרטי, ואנחנו לא ניגשים לקבצים או מידע אישי שלכם ללא אישור מפורש. הפרטיות שלכם חשובה לנו כמו האמינות והמקצועיות של התיקון.
+  </div>
+
+  <p style="text-align:center; font-size: 22px; color: var(--dark); margin-top: 50px; font-weight: 600; line-height: 1.8;">
+    בקיצור, כשאתם בוחרים ב-i fix cellular, אתם בוחרים בשירות מקצועי, אמין ומהיר שחושב קדימה ודואג לכם. אנחנו כאן כדי לעזור לכם בכל תקלה, בכל שעה, עם מקצועיות ומסירות מלאה. התקשרו אלינו עכשיו ותראו בעצמכם!<br><br>
+    📞 <a href="tel:0505557764" style="color: var(--primary); text-decoration: none; font-weight: 700;">050-555-7764</a> | 💬 <a href="https://wa.me/972505557764" style="color: var(--secondary); text-decoration: none; font-weight: 700;">שלחו הודעה בוואצאפ</a>
+  </p>
+</section>
+
+<section class="section" id="contact">
+  <h2>📞 צור קשר</h2>
+  <p style="text-align:center; font-size: 20px; color: #64748b; margin-bottom: 30px;">
+    מלא את הטופס ונחזור אליך בהקדם, או פשוט לחץ על וואצאפ!
+  </p>
+
+  <div class="contact-form">
+    <form action="#" method="post">
+      <div class="form-group">
+        <label for="name">שם מלא:</label>
+        <input type="text" id="name" name="name" required placeholder="הזן שם מלא">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">מספר טלפון:</label>
+        <input type="tel" id="phone" name="phone" required placeholder="050-1234567">
+      </div>
+
+      <div class="form-group">
+        <label for="message">הודעה:</label>
+        <textarea id="message" name="message" rows="5" required placeholder="ספר לנו מה התקלה..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">✉️ שלח פנייה</button>
+    </form>
+  </div>
+
+  <div class="contact-info">
+    <div class="contact-item">
+      <div class="contact-item-icon">📞</div>
+      <div class="contact-item-text">התקשרו אלינו:<br><a href="tel:0505557764">050-555-7764</a></div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-item-icon">💬</div>
+      <div class="contact-item-text">וואצאפ:<br><a href="https://wa.me/972505557764">לחץ לשיחה</a></div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-item-icon">🕒</div>
+      <div class="contact-item-text">שעות פעילות:<br>09:00–23:00</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <p style="font-size: 20px; font-weight: 700; margin-bottom: 10px;">⚡ i fix cellular – תיקון סלולר עד הבית</p>
+    
+    <div class="footer-links">
+      <a onclick="openModal('accessibility-statement')">📜 הצהרת נגישות</a>
+      <a onclick="openModal('privacy-policy')">🔒 מדיניות פרטיות</a>
+      <a onclick="openModal('terms-of-use')">📋 תנאי שימוש</a>
+    </div>
+
+    <div class="copyright">
+      <p>© כל הזכויות שמורות – i fix cellular 2025</p>
+    </div>
+  </div>
+</footer>
+
+<div id="modal-accessibility-statement" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">X</button>
+    <h2>הצהרת נגישות</h2>
+    <p>ב־i fix cellular אנו רואים חשיבות עליונה בהנגשת האתר לאנשים עם מוגבלויות. השקענו משאבים כדי להקל על השימוש באתר ולהפוך את השירות לזמין יותר עבור כולם.</p>
+    
+    <h3>כלי הנגישות באתר</h3>
+    <p>באתר מוטמע תפריט נגישות המאפשר:</p>
+    <ul>
+      <li>שינוי צבעים לגווני אפור.</li>
+      <li>ניגודיות גבוהה (רקע כהה, טקסט בהיר).</li>
+      <li>הגדלת גופן לקריאה נוחה.</li>
+      <li>הדגשת פוקוס לאלמנטים נבחרים.</li>
+      <li>שימוש בסמן עכבר מוגדל.</li>
+    </ul>
+
+    <h3>ניווט באמצעות מקלדת</h3>
+    <p>האתר תומך בניווט מלא ללא עכבר:</p>
+    <ul>
+      <li><b>Tab:</b> מעבר לרכיב הבא.</li>
+      <li><b>Shift + Tab:</b> חזרה לרכיב הקודם.</li>
+      <li><b>Enter / Space:</b> הפעלת כפתורים וקישורים.</li>
+      <li><b>Esc:</b> סגירת חלונות קופצים ותפריטים.</li>
+    </ul>
+
+    <h3>פנייה לרכז נגישות</h3>
+    <p>אם נתקלתם בקושי או שיש לכם הצעה לשיפור, נשמח לשמוע מכם:<br>
+    טלפון: 050-555-7764<br>
+    מייל: service@yairmaster.info</p>
+  </div>
+</div>
+
+<div id="modal-privacy-policy" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">X</button>
+    <h2>מדיניות פרטיות</h2>
+    <p>אנו מכבדים את פרטיותכם ומחויבים להגן על המידע האישי שלכם.</p>
+    
+    <h3>איסוף מידע</h3>
+    <p>המידע שנאסף בטופס צור קשר (שם, טלפון, הודעה) משמש אך ורק לצורך יצירת קשר ותיאום השירות. אנו לא מעבירים את המידע לצד שלישי שאינו קשור למתן השירות.</p>
+    
+    <h3>Cookies</h3>
+    <p>האתר עשוי להשתמש ב"עוגיות" (Cookies) לצורך שיפור חווית המשתמש וסטטיסטיקה פנימית.</p>
+    
+    <h3>אבטחת מידע</h3>
+    <p>אנו נוקטים באמצעי זהירות מקובלים על מנת לשמור, ככל האפשר, על סודיות המידע.</p>
+  </div>
+</div>
+
+<div id="modal-terms-of-use" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">X</button>
+    <h2>תנאי שימוש</h2>
+    <p>ברוכים הבאים לאתר i fix cellular. השימוש באתר ובשירותים המוצעים בו כפוף לתנאים הבאים:</p>
+    
+    <h3>השירות</h3>
+    <p>אנו מספקים שירותי תיקון סלולר עד הבית. המחירים המופיעים באתר הינם להערכה ועשויים להשתנות בהתאם לסוג המכשיר וחומרת התקלה.</p>
+    
+    <h3>אחריות</h3>
+    <p>אחריות על תיקונים ניתנת לתקופה המוגדרת בחשבונית ללקוח. האחריות אינה מכסה נזק פיזי, שבר או נזקי מים שנוצרו לאחר התיקון.</p>
+    
+    <h3>קניין רוחני</h3>
+    <p>אין להעתיק או להשתמש בתוכן האתר (טקסטים, תמונות, לוגו) ללא אישור בכתב.</p>
+  </div>
+</div>
+
+<script>
+  // פונקציות לתפריט הנגישות
+  function toggleAccMenu() {
+    const menu = document.getElementById('accessibility-menu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+  }
+
+  function toggleAccess(mode) {
+    const body = document.body;
+    
+    if (mode === 'grayscale') body.classList.toggle('acc-grayscale');
+    if (mode === 'contrast') body.classList.toggle('acc-high-contrast');
+    if (mode === 'text') body.classList.toggle('acc-large-text');
+    if (mode === 'focus') body.classList.toggle('acc-focus-mode');
+    if (mode === 'cursor') body.classList.toggle('acc-large-cursor');
+  }
+
+  function resetAccess() {
+    document.body.classList.remove(
+      'acc-grayscale', 
+      'acc-high-contrast', 
+      'acc-large-text', 
+      'acc-focus-mode', 
+      'acc-large-cursor'
+    );
+  }
+
+  // פונקציות לחלונות קופצים (Modals)
+  function openModal(id) {
+    document.getElementById('accessibility-menu').style.display = 'none';
+    const modal = document.getElementById('modal-' + id);
+    if (modal) {
+      modal.style.display = 'flex';
+      modal.querySelector('button').focus();
+    }
+  }
+
+  function closeModal() {
+    const modals = document.querySelectorAll('.modal-overlay');
+    modals.forEach(modal => modal.style.display = 'none');
+  }
+
+  // סגירת מודל בלחיצה על ESC או מחוץ לתוכן
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+      closeModal();
+    }
+  }
+  
+  window.onkeydown = function(event) {
+    if (event.key === "Escape") {
+      closeModal();
+      document.getElementById('accessibility-menu').style.display = 'none';
+    }
+  }
+</script>
+
+</body>
+</html>
